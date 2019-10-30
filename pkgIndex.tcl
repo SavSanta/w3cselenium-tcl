@@ -14,7 +14,7 @@ package ifneeded selenium::utils::base64 0.1 [list source [file join $dir utils 
 package ifneeded selenium::utils::types 0.1 [list source [file join $dir utils types types.tcl]]
 package ifneeded selenium::utils::types::json 0.1 [list source [file join $dir utils types json.tcl]]
 
-package ifneeded selenium 2.3.2 "
+package ifneeded selenium 4.0.0 "
                     [list source [file join $dir commands.tcl]]
 					[list source [file join $dir exceptions.tcl]]
 					[list source [file join $dir by.tcl]]
