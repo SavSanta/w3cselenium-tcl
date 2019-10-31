@@ -94,7 +94,7 @@ namespace eval ::selenium {
                                         platform ANY
                                         javascriptEnabled true}
                            
-# STUB for following the W3C  standard that selenium 4.0 will use with modern browsers             
+# STUB for following the W3C standard that selenium 4.0 will use with modern browsers             
 	set DesiredCapabilities(W3C) {
                                         browserName W3C
                                         browserVersion ""

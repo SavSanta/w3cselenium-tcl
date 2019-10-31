@@ -4,13 +4,13 @@ namespace eval ::selenium {
         variable Mouse_Button Command
 
         method double_click {} {
-            # Make double click
+            # Make double-click action.
 
             my execute $Command(DOUBLE_CLICK)
         }
         
 		method click {{element_ID ""}} {
-			# Make a click if no element ID is guiven or click an specific element otherwise.
+			# Make a click action on an element on a specific element if given or none if not.
             
             if {$element_ID eq ""} {
                 my execute $Command(CLICK)
@@ -49,13 +49,13 @@ namespace eval ::selenium {
         }
         
         method mouse_down {buttonName} {
-            # mouse down
+            # mouse down action
             
             my execute $Command(MOUSE_DOWN) button $Mouse_Button($buttonName)
         }
         
         method mouse_up {buttonName} {
-            # mouse up
+            # mouse up action
 
             my execute $Command(MOUSE_UP) button $Mouse_Button($buttonName)
         }

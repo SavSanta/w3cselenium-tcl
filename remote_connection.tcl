@@ -19,7 +19,7 @@ namespace eval ::selenium {
 		variable server_addr user_agent HTTP_TEMPLATES_OF_WEBDRIVER_PROTOCOL
 
 		constructor {server_addr {user_agent "Selenium Tcl"}} {
-			# se tiene que canonizar la url del servidor
+			# O
 			namespace eval [self] {
 				namespace upvar ::selenium HTTP_TEMPLATES_OF_WEBDRIVER_PROTOCOL HTTP_TEMPLATES_OF_WEBDRIVER_PROTOCOL
 			}
@@ -104,11 +104,11 @@ namespace eval ::selenium {
 
 				set response [my ProcessResponse $token]
 			} finally {
-				# delete http session token
+				# Delete http session token
 				if {[info exists token]} {
 					::http::cleanup $token
 				}
-				#restore previous configuration
+				# Restore previous configuration
 				::http::config {*}$previous_settings
 			}
 
@@ -116,7 +116,7 @@ namespace eval ::selenium {
 		}
 
 		method ProcessResponse {token} {
-            # Accept a http token an returns a list "status_response" and "JSON answer".
+            # Accept a http token and returns a list of "status_response" and "JSON answer".
 
 			upvar #0 $token state
 

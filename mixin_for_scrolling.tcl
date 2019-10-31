@@ -9,7 +9,7 @@ namespace eval ::selenium {
         }
         
         method scroll_to_bottom {} {
-            # scroll to bottom of webpage
+            # Scroll to bottom of webpage
 
             my execute_javascript {window.scrollTo(0,Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight));}
         }
@@ -38,7 +38,7 @@ namespace eval ::selenium {
         }  
         
         method scroll_to_bottom_infinitely {{condition_command ""} {timeout 5000}} {
-            # scroll to bottom until condition provided is true or it's not possible to scroll more
+            # Scroll to bottom until condition provided returns true or it's not possible to scroll any further
 
             set scroll_Y_position [lindex [my scrolling_position] 1]
             
