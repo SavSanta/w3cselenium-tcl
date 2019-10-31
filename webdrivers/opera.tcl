@@ -24,7 +24,7 @@ namespace eval ::selenium::webdrivers::opera {
             if {![info exists options(-browser_binary)]} {
                 
                 if {$::tcl_platform(platform) eq "windows"} {
-                    # buscar opera en registro de windows
+                    # Look for opera in the Windows Registry
                     lappend args -browser_binary opera.exe
                     
                 } else {

@@ -14,7 +14,7 @@ namespace eval ::selenium::webdrivers::chromium {
             
             if {![info exists options(-browser_binary)]} {
                 if {$::tcl_platform(platform) eq "windows"} {
-                    # buscar chromium en registro de windows
+                    # Look for Chromium in Windows Registry
                     lappend args -browser_binary [exec where chromium-browser.exe]
                 } else {
                     lappend args -browser_binary [exec which chromium-browser]
