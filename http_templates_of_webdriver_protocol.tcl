@@ -122,7 +122,7 @@ namespace eval ::selenium {
 		"$Command(DOUBLE_CLICK)" {POST /session/:sessionId/doubleclick {sessionId} {}}
 		"$Command(MOUSE_DOWN)" {POST /session/:sessionId/buttondown {sessionId} {dict button number}}
 		"$Command(MOUSE_UP)" {POST /session/:sessionId/buttonup {sessionId} {dict button number}}
-		"$Command(MOVE_TO)" {POST /session/:sessionId/moveto {sessionId} {dict element string xoffset number yoffset number}}
+		"$Command(MOVE_TO)" {POST /session/:sessionId/moveto {sessionId} {dict element string xoffset number yoffset number}}         # Good Example of how to handle optional values at the executor
 		"$Command(GET_WINDOW_SIZE)" {GET /session/:sessionId/window/:windowHandle/size {sessionId windowHandle}}
 		"$Command(SET_WINDOW_SIZE)" {POST /session/:sessionId/window/:windowHandle/size {sessionId windowHandle} {dict width number height number}}
 		"$Command(GET_WINDOW_POSITION)" {GET /session/:sessionId/window/:windowHandle/position {sessionId windowHandle}}
