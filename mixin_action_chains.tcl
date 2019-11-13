@@ -1,16 +1,14 @@
-# action_chains
-
 namespace eval ::selenium {
-	
     
     oo::class create Mixin_Action_Chains {
-        variable action_list {}
         
+        variable action_list {}
+        variable duration 150
 
         
         method perform {} {
-			
-			}
+            
+            }
         
         method reset_actions {} {
             
@@ -66,7 +64,6 @@ namespace eval ::selenium {
         }
         
         
-        
         method context_click {{element_ID ""}} {
             
             if {element_ID ne ""} {
@@ -91,8 +88,7 @@ namespace eval ::selenium {
             
             
         }
-    
-    
+  
         method double_click {{element_ID ""}} { 
 
             if {element_ID ne ""} {
@@ -120,8 +116,7 @@ namespace eval ::selenium {
                ]
              }
         }
-        
-        
+              
         method drag_and_drop { element_start, element_end } {
             
             my click_and_hold {element_start}
@@ -168,37 +163,14 @@ namespace eval ::selenium {
         
         }
         
-        
-        method move_to_element_with_offset {element_ID, xoffset, yoffset } {
-        
-            my execute $Command(W3C_GET_ELEMENT_RECT) sessionId $session_ID id $element_ID]
-            set element_rect_x [dict get element_rect width] 
-            set element_rect_y [dict get element_rect height] 
-            
-            set left_offset [expr element_rect_x / 2 ]
-            set top_offset [expr element_rect_y / 2 ]
-            set left [set expr -left_offset + { element_rect_x | 0} ]
-            set top [set expr -top_offset + { element_rect_y | 0} ]
-			} else {
-				set left 0
-				set top 0
-			}
-        
-        
-        
-        }
-        
-        
-        
-        #method pause {seconds} {
-        
-			#}
-			
-			
+
         method release {} {
             
             my execute $Command(W3C_RELEASE_ACTIONS) sessionId $session_ID
+            
             }
+            
+            
         #method release_pointer {{element_ID ""}} {
             ## Prob Not Needed
             #}
@@ -216,15 +188,36 @@ namespace eval ::selenium {
         #method key_down {self, value, element=None }
         #method key_up {self, value, element=None }
         
+
+        
+        
+        #This is complete trash and I need to fix it
+        #method move_to_element_with_offset {element_ID, xoffset, yoffset } {
+			
+			#if {0} {
+            #my execute $Command(W3C_GET_ELEMENT_RECT) sessionId $session_ID id $element_ID]
+            #set element_rect_x [dict get element_rect width] 
+            #set element_rect_y [dict get element_rect height] 
+            
+            #set left_offset [expr element_rect_x / 2 ]
+            #set top_offset [expr element_rect_y / 2 ]
+            #set left [set expr -left_offset + { element_rect_x | 0} ]
+            #set top [set expr -top_offset + { element_rect_y | 0} ]
+            #} else {
+                #set left 0
+                #set top 0
+            #}
         
         
         
+        #}
         
         
         
-                                }
-    
-      
-    
-    
+        #method pause {seconds} {
+        
+            #}
+
+
+                                }    
                         }

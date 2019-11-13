@@ -22,7 +22,7 @@ namespace eval ::selenium {
 		# - session_ID - The session ID to send with every $Command::
 		# - capabilities - A dictionary of capabilities of the underlying browser for this instance's session.
         
-        mixin ::selenium::Mixin_For_Element_Retrieval ::selenium::Mixin_For_Scrolling ::selenium::Mixin_For_Mouse_Interaction ::selenium::Mixin_Actions_Chains
+        mixin ::selenium::Mixin_For_Element_Retrieval ::selenium::Mixin_For_Scrolling ::selenium::Mixin_For_Mouse_Interaction ::selenium::Mixin_Action_Chains
 		variable driver remote_connection error_handler current_capabilities session_ID Command Mouse_Button Exception StatusCache By w3c_compliant JAVASCRIPT_RETURNS_ELEMENT JAVASCRIPT_RETURNS_ELEMENTS
 		
 

@@ -13,10 +13,12 @@ namespace eval ::selenium {
 			# Make a click action on an element on a specific element if given or none if not.
             
             if {$element_ID eq ""} {
-                my execute $Command(CLICK)
+                #pointer_down(MouseButton.LEFT)
+                #self.pointer_up(MouseButton.LEFT)
             } else {
-                
-                my execute $Command(CLICK_ELEMENT) id $element_ID
+                puts [info object variables my $sessionId]
+                my execute $Command(MOVE_TO) id $element_ID             # Modified to add move in preliminary action to move mouse to element
+                my execute $Command(CLICK_ELEMENT) sessionId [my $sessionId] id $element_ID     # Convert to Click_Element call here rather than actions object
             }
 		}
         
