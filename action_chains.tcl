@@ -3,7 +3,7 @@
 namespace eval ::selenium {
 	
     
-    oo::class create Mixin_Actions {
+    oo::class create Mixin_Action_Chains {
         variable action_list {}
         
 
