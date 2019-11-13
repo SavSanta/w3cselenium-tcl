@@ -22,7 +22,7 @@ namespace eval ::selenium {
 		# - session_ID - The session ID to send with every $Command::
 		# - capabilities - A dictionary of capabilities of the underlying browser for this instance's session.
         
-        mixin ::selenium::Mixin_For_Element_Retrieval ::selenium::Mixin_For_Scrolling ::selenium::Mixin_For_Mouse_Interaction
+        mixin ::selenium::Mixin_For_Element_Retrieval ::selenium::Mixin_For_Scrolling ::selenium::Mixin_For_Mouse_Interaction ::selenium::action_chains
 		variable driver remote_connection error_handler current_capabilities session_ID Command Mouse_Button Exception StatusCache By w3c_compliant JAVASCRIPT_RETURNS_ELEMENT JAVASCRIPT_RETURNS_ELEMENTS
 		
 
@@ -155,7 +155,7 @@ namespace eval ::selenium {
 			#
 			# :Usage:
 			#	driver title
-			
+
 			return [my execute_and_get_value $Command(GET_TITLE)]
 		}
         
@@ -768,6 +768,8 @@ namespace eval ::selenium {
                 my execute $Command(SET_SCRIPT_TIMEOUT)	ms [expr $time_to_wait * 1000]
             }
 		}
+		
+		
 
 		
 		method set_page_load_timeout {time_to_wait} {
@@ -782,12 +784,14 @@ namespace eval ::selenium {
 
 			my execute $Command(SET_TIMEOUTS) ms [expr $time_to_wait * 1000] type {page load}
 		}
+		
 
 		method current_capabilities {} {
 			# returns the drivers current desired capabilities being used
 
 			return $current_capabilities
 		}
+		
 
 		method get_screenshot_as_file {filename {element_ID ""}} {
 			# Gets the screenshot of the current window. Returns False if there is
@@ -902,6 +906,7 @@ namespace eval ::selenium {
 				throw $Exception(WebdriverException) "You can only set the orientation to 'LANDSCAPE' and 'PORTRAIT'"
 			}
 		}
+		
 
 		method available_log_types {} {
 			# Gets a list of the available log types
@@ -1128,4 +1133,3 @@ namespace eval ::selenium {
 		
 	}
 }
-
