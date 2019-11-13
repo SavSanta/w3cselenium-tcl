@@ -210,7 +210,7 @@ namespace eval ::selenium {
         "$Command(W3C_DELETE_COOKIE)" {DELETE /session/:sessionId/cookie/:name {sessionId name}}
         "$Command(W3C_DELETE_ALL_COOKIES)" {DELETE /session/:sessionId/cookie {sessionId} {}}
         
-        # Missing PERFORM_ACTIONS   - Gotta Decide How to implement this or if we should just imlement a certain pre-selected subset
+        "$Command(W3C_PERFORM_ACTIONS)" {POST /session/:sessionId/actions {sessionId} {dict actions json}}
         
         "$Command(W3C_RELEASE_ACTIONS)" {DELETE /session/:sessionId/actions {sessionId} {}}
         "$Command(W3C_DISMISS_ALERT)" {POST /session/:sessionId/alert/dismiss {sessionId} {}}
