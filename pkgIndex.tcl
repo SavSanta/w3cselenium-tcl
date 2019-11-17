@@ -28,14 +28,14 @@ package ifneeded selenium 4.0.0 "
                     [list source [file join $dir mixin_for_element_retrieval.tcl]]
                     [list source [file join $dir mixin_for_scrolling.tcl]]
                     [list source [file join $dir mixin_for_mouse_interaction.tcl]]
+                    [list source [file join $dir mixin_action_chains.tcl]]
                     [list source [file join $dir webelement.tcl]]
                     [list source [file join $dir container_of_webelements.tcl]]
                     [list source [file join $dir select_element.tcl]]
 					[list source [file join $dir webdriver.tcl]]
 					[list source [file join $dir wait.tcl]]
 					[list source [file join $dir expected_condition.tcl]]
-                    [list source [file join $dir version.tcl]]
-                    [list source [file join $dir mixin_action_chains.tcl]]"
+                    [list source [file join $dir version.tcl]]"
                     
 package ifneeded selenium::chrome 0.1 [list source [file join $dir webdrivers chrome.tcl]]
 package ifneeded selenium::chromium 0.1 [list source [file join $dir webdrivers chromium.tcl]]
