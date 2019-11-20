@@ -122,7 +122,7 @@ namespace eval ::selenium {
 		"$Command(DOUBLE_CLICK)" {POST /session/:sessionId/doubleclick {sessionId} {}}
 		"$Command(MOUSE_DOWN)" {POST /session/:sessionId/buttondown {sessionId} {dict button number}}
 		"$Command(MOUSE_UP)" {POST /session/:sessionId/buttonup {sessionId} {dict button number}}
-		"$Command(MOVE_TO)" {POST /session/:sessionId/moveto {sessionId} {dict element string xoffset number yoffset number}}         # Good Example of how to handle optional values at the executor
+		"$Command(MOVE_TO)" {POST /session/:sessionId/moveto {sessionId} {dict element string xoffset number yoffset number}}         
 		"$Command(GET_WINDOW_SIZE)" {GET /session/:sessionId/window/:windowHandle/size {sessionId windowHandle}}
 		"$Command(SET_WINDOW_SIZE)" {POST /session/:sessionId/window/:windowHandle/size {sessionId windowHandle} {dict width number height number}}
 		"$Command(GET_WINDOW_POSITION)" {GET /session/:sessionId/window/:windowHandle/position {sessionId windowHandle}}
@@ -160,14 +160,11 @@ namespace eval ::selenium {
 		"$Command(GET_SESSION_STORAGE_SIZE)" {GET /session/:sessionId/session_storage/size {sessionId} {}}
 		"$Command(GET_LOG)" {POST /session/:sessionId/log {sessionId} {dict type string}}
 		"$Command(GET_AVAILABLE_LOG_TYPES)" {GET /session/:sessionId/log/types {sessionId} {}}
-        
-        # W3C WebDriver Version of Commands
-        # See https://github.com/jlipps/simple-wd-spec
-        "$Command(W3C_STATUS)" {GET /status {} {}}
+		"$Command(W3C_STATUS)" {GET /status {} {}}
         "$Command(W3C_NEW_SESSION)" {POST /session {} {dict desiredCapabilities {$json_spec(CAPABILITIES)}  requiredCapabilities {$json_spec(CAPABILITIES)}}}
         "$Command(W3C_QUIT)" {DELETE /session/:sessionId {sessionId} {}}
         "$Command(W3C_GET_TIMEOUTS)" {GET /session/:sessionId/timeouts {sessionId}}
-        "$Command(W3C_SET_TIMEOUTS)" {POST /session/:sessionId/timeouts {sessionId} {dict type string ms number}}      # Need to modify on the executor code end "type" that gets sent is now "pageLoad", "script", or "implicit".
+        "$Command(W3C_SET_TIMEOUTS)" {POST /session/:sessionId/timeouts {sessionId} {dict type string ms number}}      
         "$Command(W3C_GET)" {POST /session/:sessionId/url {sessionId} {dict url string}}
         "$Command(W3C_GET_CURRENT_URL)" {GET /session/:sessionId/url {sessionId}}
         "$Command(W3C_GO_BACK)" {POST /session/:sessionId/back {sessionId} {}}
@@ -175,13 +172,13 @@ namespace eval ::selenium {
         "$Command(W3C_REFRESH)" {POST /session/:sessionId/refresh {sessionId} {}}
         "$Command(W3C_GET_TITLE)" {GET /session/:sessionId/title {sessionId} {}}
         "$Command(W3C_GET_CURRENT_WINDOW_HANDLE)" {GET /session/:sessionId/window {sessionId}}
-        "$Command(W3C_CLOSE_CURRENT_WINDOW_HANDLE)" {DELETE /session/:sessionId/window {sessionId}}      # This is new! Add as executor
-        "$Command(W3C_SWITCH_TO_WINDOW)" {POST /session/:sessionId/window {sessionId} {dict handle string}}  # Change the JSON key content from "name" to "handle"
+        "$Command(W3C_CLOSE_CURRENT_WINDOW_HANDLE)" {DELETE /session/:sessionId/window {sessionId}}      
+        "$Command(W3C_SWITCH_TO_WINDOW)" {POST /session/:sessionId/window {sessionId} {dict handle string}}  
         "$Command(W3C_GET_WINDOW_HANDLES)" {GET /session/:sessionId/window/handles {sessionId} {}}
-        "$Command(W3C_SWITCH_TO_FRAME)" {POST /session/:sessionId/frame {sessionId} {dict id json}}          # W3C Spec says id can be {string|number|null}. Orignal FF spec says it can be {string|number|null|WebElement JSON Object}. May need to figure a fix
+        "$Command(W3C_SWITCH_TO_FRAME)" {POST /session/:sessionId/frame {sessionId} {dict id json}}          
         "$Command(W3C_SWITCH_TO_PARENT_FRAME)" {POST /session/:sessionId/frame/parent {sessionId} {}}
         "$Command(W3C_GET_WINDOW_RECT)" {GET /session/:sessionId/window/rect {sessionId}}
-        "$Command(W3C_SET_WINDOW_RECT)" {POST /session/:sessionId/window/rect {dict x number y number width number height number}}   # not sure if this will work for the optional values since now all 4 get sent. Maybe use the "jsoN' format
+        "$Command(W3C_SET_WINDOW_RECT)" {POST /session/:sessionId/window/rect {dict x number y number width number height number}}   
         "$Command(W3C_MAXIMIZE_WINDOW)" {POST /session/:sessionId/window/maximize {sessionId}}
         "$Command(W3C_MINIMIZE_WINDOW)" {POST /session/:sessionId/window/minimize {sessionId}}
         "$Command(W3C_FULLSIZE_WINDOW)" {POST /session/:sessionId/window/fullsize {sessionId}}
@@ -200,28 +197,24 @@ namespace eval ::selenium {
         "$Command(W3C_IS_ELEMENT_ENABLED)" {GET /session/:sessionId/element/:id/enabled {sessionId id}}
         "$Command(W3C_CLICK_ELEMENT)" {POST /session/:sessionId/element/:id/click {sessionId id}}         
         "$Command(W3C_CLEAR_ELEMENT)" {POST /session/:sessionId/element/:id/clear {sessionId id}}
-        "$Command(W3C_SEND_KEYS_TO_ELEMENT)" {POST /session/:sessionId/element/:id/value {sessionId id} {dict text string}}  # Do Not know if this JSON will work as it was modified from the Non-W3C. Check it out
+        "$Command(W3C_SEND_KEYS_TO_ELEMENT)" {POST /session/:sessionId/element/:id/value {sessionId id} {dict text string}}  
         "$Command(W3C_GET_PAGE_SOURCE)" {GET /session/:sessionId/source {sessionId} {}}
         "$Command(W3C_EXECUTE_SCRIPT)" {POST /session/:sessionId/execute/sync {sessionId} {dict script string args {list json}}}
-        "$Command(W3C_EXECUTE_ASYNC_SCRIPT)" {POST /session/:sessionId/execute/async {sessionId} {dict script string args {list json}}}      #looks like this is correct and should operate unmodified. Test it.
+        "$Command(W3C_EXECUTE_ASYNC_SCRIPT)" {POST /session/:sessionId/execute/async {sessionId} {dict script string args {list json}}}      
         "$Command(W3C_GET_ALL_COOKIES)" {GET /session/:sessionId/cookie {sessionId} {}}
-        "$Command(W3C_GET_NAMED_COOKIE)" {GET /session/:sessionId/cookie/:name {sessionId name} {}}  # This is new and need to be added as method
+        "$Command(W3C_GET_NAMED_COOKIE)" {GET /session/:sessionId/cookie/:name {sessionId name} {}}  
         "$Command(W3C_ADD_COOKIE)" {POST /session/:sessionId/cookie {sessionId} {dict cookie {$json_spec(COOKIE)} }}
         "$Command(W3C_DELETE_COOKIE)" {DELETE /session/:sessionId/cookie/:name {sessionId name}}
         "$Command(W3C_DELETE_ALL_COOKIES)" {DELETE /session/:sessionId/cookie {sessionId} {}}
-        
-        "$Command(W3C_PERFORM_ACTIONS)" {POST /session/:sessionId/actions {sessionId} {dict actions json}}
-        
+        "$Command(W3C_PERFORM_ACTIONS)" {POST /session/:sessionId/actions {sessionId} {dict actions json}}        
         "$Command(W3C_RELEASE_ACTIONS)" {DELETE /session/:sessionId/actions {sessionId} {}}
         "$Command(W3C_DISMISS_ALERT)" {POST /session/:sessionId/alert/dismiss {sessionId} {}}
         "$Command(W3C_ACCEPT_ALERT)" {POST /session/:sessionId/alert/accept {sessionId} {}}
         "$Command(W3C_GET_ALERT_TEXT)" {GET /session/:sessionId/alert/text {sessionId} {}}
         "$Command(W3C_SET_ALERT_VALUE)" {POST /session/:sessionId/alert/text {sessionId} {dict text string}}
         "$Command(W3C_SCREENSHOT)" {GET /session/:sessionId/screenshot {sessionId} {}}
-        "$Command(W3C_ELEMENT_SCREENSHOT)" {GET /session/:sessionId/element/:id/screenshot {sessionId id}}    # This also has a new optional JSON option to implement as "scroll". By default it's already true
-
-
-        
+        "$Command(W3C_ELEMENT_SCREENSHOT)" {GET /session/:sessionId/element/:id/screenshot {sessionId id}}    
+                
 	}]
 	
 }
