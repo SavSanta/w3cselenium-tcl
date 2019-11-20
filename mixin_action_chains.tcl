@@ -175,15 +175,15 @@ namespace eval ::selenium {
 		method w3c_move_to_element_with_offset {element_ID, xoff, yoff } {
 
 			if {$element_ID eq "" || xoff eq "" || yoff eq "" } {
-					throw {Missing Parameters} {Error: Element ID, an x-offset, and a y-offset must be supplied}
-				
+					throw {Missing Parameters} {Error: an element ID, an x-offset, and a y-offset must be supplied}
 				}
+				
 				# Just call out to the other proc with a fully supplied signature.
 				my w3c_move_to_element $element_ID $xoff $yoff
 
 		}
 
-		method send_keys {keys_to_send {element_ID ""}} {
+		method w3c_send_keys {keys_to_send {element_ID ""}} {
 			
 			if {0} {
 				
@@ -199,9 +199,13 @@ namespace eval ::selenium {
 			
 			}
 
-		method send_keys_to_element {keys_to_send element_ID} {
+		method w3c_send_keys_to_element {keys_to_send element_ID} {
 			
-			
+			if {$keys_to_send eq "" || $element_ID eq "" } {
+					throw {Missing Parameters} {Error: an element ID and keys to send must be supplied.}
+				}
+				
+			my w3c_send_keys {$keys_to_send $element_ID}
 			
 			}		
 		
