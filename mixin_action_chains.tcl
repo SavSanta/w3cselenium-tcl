@@ -178,8 +178,8 @@ namespace eval ::selenium {
 					throw {Missing Parameters} {Error: an element ID, an x-offset, and a y-offset must be supplied}
 				}
 				
-				# Just call out to the other proc with a fully supplied signature.
-				my w3c_move_to_element $element_ID $xoff $yoff
+			# Just call out to the other proc/method with the fully supplied signature.
+			my w3c_move_to_element $element_ID $xoff $yoff
 
 		}
 
