@@ -205,7 +205,8 @@ namespace eval ::selenium {
 					throw {Missing Parameters} {Error: an element ID and keys to send must be supplied.}
 				}
 				
-			my w3c_send_keys {$keys_to_send $element_ID}
+			my w3c_click $element_ID	
+			my w3c_send_keys $keys_to_send $element_ID
 			
 			}		
 		
