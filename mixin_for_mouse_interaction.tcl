@@ -12,20 +12,18 @@ namespace eval ::selenium {
 		method click {{element_ID ""}} {
 			# Make a click action on an element on a specific element if given or none if not.
             
-            if {$element_ID eq ""} {
-                #pointer_down(MouseButton.LEFT)
-                #self.pointer_up(MouseButton.LEFT)
+		if {$element_ID eq ""} {
+                my execute $Command(CLICK)
             } else {
-                puts [info object variables my $sessionId]
-                my execute $Command(MOVE_TO) id $element_ID             # Modified to add move in preliminary action to move mouse to element
-                my execute $Command(CLICK_ELEMENT) sessionId [my $sessionId] id $element_ID     # Convert to Click_Element call here rather than actions object
+                
+                my execute $Command(CLICK_ELEMENT) id $element_ID
             }
 		}
-        
+
         method click_and_hold {{element_ID ""}} {
             # Holds down the left mouse button on an element.
             # :Args:
-            # - element_ID (OPTINAL): The element to mouse down.
+            # - element_ID (OPTIONAL): The element to mouse down.
             
             if {$element_ID ne ""} {
                 my move_mouse_to_element $element_ID
