@@ -185,11 +185,8 @@ namespace eval ::selenium {
 
 		method w3c_send_keys {keys_to_send {element_ID ""}} {
 			
-			if {0} {
-				
-				
-				
-				
+			if {$element_ID ne ""} {
+				my execute $Command(W3C_SEND_KEYS_TO_ELEMENT) sessionId $session_ID id $element_ID text $keys_to_send
 			} else {
 					
 					
@@ -204,8 +201,13 @@ namespace eval ::selenium {
 			if {$keys_to_send eq "" || $element_ID eq "" } {
 					throw {Missing Parameters} {Error: an element ID and keys to send must be supplied.}
 				}
-				
-			my w3c_click $element_ID	
+			
+			# The clicking of the element seems extraneous in my LIMITED testing as the "Element Send Keys" appears to grab focus.
+			my w3c_click $element_ID
+			
+			# Wireshark shows that the JSON structure that is sent is as:
+			# {"text": "\ue00fTest", "value": ["\ue00f", "T", "e", "s", "t"], "id": <snip>, "sessionId": <snip> }
+			# However, manual testing simply sending the "text" key is valid and generates the "value" key.
 			my w3c_send_keys $keys_to_send $element_ID
 			
 			}		
