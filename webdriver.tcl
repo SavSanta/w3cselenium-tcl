@@ -40,7 +40,7 @@ namespace eval ::selenium {
                                 ::selenium::container_of_webelements::Container_Of_WebElements
 
             namespace eval [self] {
-                namespace upvar ::selenium Command Command Exception Exception Mouse_Button Mouse_Button StatusCache StatusCache By By
+                namespace upvar ::selenium Command Command Exception Exception Mouse_Button Mouse_Button StatusCache StatusCache By By 
             }
 			set remote_connection [::selenium::Remote_Connection new $service_url]
 
@@ -1130,6 +1130,7 @@ namespace eval ::selenium {
                 $error_handler destroy
             }
 		}
+		
 		
 	}
 }
