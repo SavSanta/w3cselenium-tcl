@@ -2,6 +2,11 @@ namespace eval ::selenium {
 	
 	variable HTTP_TEMPLATES_OF_WEBDRIVER_PROTOCOL
 	
+	
+# The json_spec for "W3C Perform Actions" currently doesnt exist as we just use type "json" raw.
+# If one wishes in the future to supply a multi-nested dict to compile_to_json similar to COOKIE and CAPABILITIES. The spec is: 
+# {dict * {list {dict parameters dict type string id string actions {list {dict duration number x number y number type string origin string value string}}}}}
+
 	set json_spec(COOKIE) {dict 
                                 name string 
                                 value string 
@@ -58,6 +63,7 @@ namespace eval ::selenium {
                                         noProxy string}
                                      * string}
 												
+
 	
 	set HTTP_TEMPLATES_OF_WEBDRIVER_PROTOCOL [subst -nobackslashes -nocommands {
 		"$Command(STATUS)" {GET /status {} {}}
