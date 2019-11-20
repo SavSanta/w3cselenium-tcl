@@ -130,7 +130,7 @@ namespace eval ::selenium {
 		#method move_by_offset {self, xoffset, yoffset }
 
 		method w3c_move_to_element {element_ID {xoff ""} {yoff ""}} {
-			variable duration 500
+			variable duration 150
 			if {$element_ID eq ""} {
 				throw {Missing Element} {Error: Element ID Must Be Supplied}
 			}
