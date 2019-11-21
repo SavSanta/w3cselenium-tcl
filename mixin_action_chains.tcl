@@ -183,22 +183,46 @@ namespace eval ::selenium {
 
 		}
 
-		method w3c_send_keys {keys_to_send {element_ID ""}} {
+		method w3c_send_keys {string_of_keys {element_ID ""}} {
 			
 			if {$element_ID ne ""} {
-				my execute $Command(W3C_SEND_KEYS_TO_ELEMENT) sessionId $session_ID id $element_ID text $keys_to_send
-			} else {
+				#  
+				my execute $Command(W3C_SEND_KEYS_TO_ELEMENT) sessionId $session_ID id $element_ID text $string_of_keys
+			} else { 
+				set genlist ""
+				for {set i 0} {$i < [string length $string_of_keys]} {incr i} {
 					
-					
-					
+					# Iterate letters/unicode in string so we can create the individual JSON array list items. 
+					set char [string index $string_of_keys $i]
+					set genlist \
+						[string cat $genlist \
+							"\n{\"type\": \"keyDown\", \"value\": \"$char\"},\n{\"type\": \"keyUp\", \"value\": \"$char\"}," ]
+				   
+				   # Strip out the last comma otherwise it's wont be valid JSON object
+				   if { $i == [string length $string_of_keys] - 1} {
+					   set genlist [string trimright $genlist " \n\t,"]
 					}
-			
-			
-			}
+				}
+			# Else's for-loop completion so package up to be sent to Perform Actions
+			set action_payload "
+							\[
+							 {
+							   \"type\": \"key\",
+							   \"id\": \"keyboard\",
+							   \"actions\": \[
+								 $genlist
+							   \]
+							 }
+							   \]
+									"
 
-		method w3c_send_keys_to_element {keys_to_send element_ID} {
+			my execute $Command(W3C_PERFORM_ACTIONS) sessionId $session_ID actions $action_payload
+			}
+		}
+
+		method w3c_send_keys_to_element {string_of_keys element_ID} {
 			
-			if {$keys_to_send eq "" || $element_ID eq "" } {
+			if {$string_of_keys eq "" || $element_ID eq "" } {
 					throw {Missing Parameters} {Error: an element ID and keys to send must be supplied.}
 				}
 			
@@ -208,7 +232,7 @@ namespace eval ::selenium {
 			# Wireshark shows that the JSON structure that is sent is as:
 			# {"text": "\ue00fTest", "value": ["\ue00f", "T", "e", "s", "t"], "id": <snip>, "sessionId": <snip> }
 			# However, manual testing simply sending the "text" key is valid and generates the "value" key.
-			my w3c_send_keys $keys_to_send $element_ID
+			my w3c_send_keys $string_of_keys $element_ID
 			
 			}		
 		
