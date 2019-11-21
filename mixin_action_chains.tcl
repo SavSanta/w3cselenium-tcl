@@ -116,18 +116,49 @@ namespace eval ::selenium {
 			my execute $Command(W3C_PERFORM_ACTIONS) sessionId $session_ID actions $action_payload
 		}
 
-		method w3c_drag_and_drop { element_start, element_end } {
+		method w3c_drag_and_drop {element_start, element_end} {
 
 			my w3c_click_and_hold $element_start
 			my w3c_move_to_element $element_end
 			my w3c_release
-			return
-
+			
 			}
 
 
-		#method drag_and_drop_by_offset {source, xoffset, yoffset }
-		#method move_by_offset {self, xoffset, yoffset }
+		method w3c_drag_and_drop_by_offset {element_ID, xoff, yoff} {
+			if {$element_ID eq "" || ![string is integer -strict $xoff] || ![string is integer -strict $yoff]} {
+					throw {Missing Parameters} {Error: an element ID, an x-offset integer, and a y-offset integer must be supplied}
+				}
+				
+			my w3c_click_and_hold $element_ID
+			my w3c_move_by_offset $xoff $yoff
+			my w3c_release
+			
+			}
+
+		method w3c_move_by_offset {xoff, yoff} {
+			# Moves the mouse to an offset from current mouse position
+			if {![string is integer -strict $xoff] || ![string is integer -strict $yoff]} {
+					throw {Missing Parameters} {Error: an x-offset integer, and a y-offset integer must be supplied}
+					
+			set action_payload "
+				
+				\[
+				 {
+				   \"type\": \"pointer\",
+				   \"id\": \"mouse1\",
+				   \"parameters\": {\"pointerType\": \"mouse\"},
+				   \"actions\": \[
+					 {\"type\": \"pointerMove\", \"origin\": "pointer", \"duration\": 150, \"x\": $xoff, \"y\": $yoff}
+				   \]
+				 }
+				 \]
+			
+			"
+			
+			my execute $Command(W3C_PERFORM_ACTIONS) sessionId $session_ID actions $action_payload
+			
+			}
 
 		method w3c_move_to_element {element_ID {xoff ""} {yoff ""}} {
 			variable duration 150
@@ -174,8 +205,8 @@ namespace eval ::selenium {
 
 		method w3c_move_to_element_with_offset {element_ID, xoff, yoff } {
 
-			if {$element_ID eq "" || xoff eq "" || yoff eq "" } {
-					throw {Missing Parameters} {Error: an element ID, an x-offset, and a y-offset must be supplied}
+			if {$element_ID eq "" || ![string is integer -strict $xoff] || ![string is integer -strict $yoff]} {
+					throw {Missing Parameters} {Error: an element ID, an x-offset integer, and a y-offset integer must be supplied}
 				}
 				
 			# Just call out to the other proc/method with the fully supplied signature.
