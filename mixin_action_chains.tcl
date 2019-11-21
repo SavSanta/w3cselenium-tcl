@@ -217,7 +217,7 @@ namespace eval ::selenium {
 		method w3c_send_keys {string_of_keys {element_ID ""}} {
 			
 			if {$element_ID ne ""} {
-				#  
+				#  Outsource this command straight to the /element/value endpoint
 				my execute $Command(W3C_SEND_KEYS_TO_ELEMENT) sessionId $session_ID id $element_ID text $string_of_keys
 			} else { 
 				set genlist ""
