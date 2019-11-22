@@ -235,3 +235,146 @@ namespace eval ::selenium {
 		return $Exception($exceptionName)
 	}
 }
+
+
+
+		#~ ElementClickIntercepted { SELENIUM ElementClickIntercepted {
+			#~ The Element Click command could not be completed because the element receiving the events is obscuring the element that was requested clicked.
+			#~ }
+		#~ }
+
+		#~ ElementNotSelectable { SELENIUM ElementNotSelectable {
+			#~ An attempt was made to select an element that cannot be selected.
+			#~ }
+		#~ }
+
+		#~ ElementNotInteractable { SELENIUM ElementNotInteractable {
+			#~ A command could not be completed because the element is not pointer- or keyboard interactable.
+			#~ }
+		#~ }
+
+		#~ InsecureCertificate { SELENIUM InsecureCertificate {
+			#~ caused the user agent to hit a certificate warning, which is usually the result of an expired or invalid TLS certificate.
+			#~ }
+		#~ }
+
+		#~ InvalidArgument { SELENIUM InvalidArgument {
+			#~ The arguments passed to a command are either invalid or malformed.
+			#~ }
+		#~ }
+
+		#~ InvalidCookieDomain { SELENIUM InvalidCookieDomain {
+			#~ An illegal attempt was made to set a cookie under a different domain than the current page.
+			#~ }
+		#~ }
+
+		#~ InvalidCoordinates { SELENIUM InvalidCoordinates {
+			#~ The coordinates provided to an interactions operation are invalid.
+			#~ }
+		#~ }
+
+		#~ InvalidElementState { SELENIUM InvalidElementState {
+			#~ A command could not be completed because the element is in an invalid state, e.g. attempting to click an element that is no longer attached to the document.
+			#~ }
+		#~ }
+
+		#~ InvalidSelector { SELENIUM InvalidSelector {
+			#~ Argument was an invalid selector.
+			#~ }
+		#~ }
+
+		#~ InvalidSessionId { SELENIUM InvalidSessionId {
+			#~ Occurs if the given session id is not in the list of active sessions, meaning the session either does not exist or that it’s not active.
+			#~ }
+		#~ }
+
+		#~ JavascriptError { SELENIUM JavascriptError {
+			#~ An error occurred while executing JavaScript supplied by the user.
+			#~ }
+		#~ }
+
+		#~ MoveTargetOutOfBounds { SELENIUM MoveTargetOutOfBounds {
+			#~ The target for mouse interaction is not in the browser’s viewport and cannot be brought into that viewport.
+			#~ }
+		#~ }
+
+		#~ NoSuchAlert { SELENIUM NoSuchAlert {
+			#~ An attempt was made to operate on a modal dialog when one was not open.
+			#~ }
+		#~ }
+
+		#~ NoSuchCookie { SELENIUM NoSuchCookie {
+			#~ No cookie matching the given path name was found amongst the associated cookies of the current browsing context’s active document.
+			#~ }
+		#~ }
+
+		#~ NoSuchElement { SELENIUM NoSuchElement {
+			#~ An element could not be located on the page using the given search parameters.
+			#~ }
+		#~ }
+
+		#~ NoSuchFrame { SELENIUM NoSuchFrame {
+			#~ A command to switch to a frame could not be satisfied because the frame could not be found.
+			#~ }
+		#~ }
+
+		#~ NoSuchWindow { SELENIUM NoSuchWindow {
+			#~ A command to switch to a window could not be satisfied because the window could not be found.
+			#~ }
+		#~ }
+
+		#~ ScriptTimeout { SELENIUM ScriptTimeout {
+			#~ A script did not complete before its timeout expired.
+			#~ }
+		#~ }
+
+		#~ SessionNotCreated { SELENIUM SessionNotCreated {
+			#~ A new session could not be created.
+			#~ }
+		#~ }
+
+		#~ StaleElementReference { SELENIUM StaleElementReference {
+			#~ A command failed because the referenced element is no longer attached to the DOM.
+			#~ }
+		#~ }
+
+		#~ Timeout { SELENIUM Timeout {
+			#~ An operation did not complete before its timeout expired.
+			#~ }
+		#~ }
+
+		#~ UnableToSetCookie { SELENIUM UnableToSetCookie {
+			#~ A command to set a cookie’s value could not be satisfied.
+			#~ }
+		#~ }
+
+		#~ UnableToCaptureScreen { SELENIUM UnableToCaptureScreen {
+			#~ A screen capture was made impossible.
+			#~ }
+		#~ }
+
+		#~ UnexpectedAlertOpen { SELENIUM UnexpectedAlertOpen {
+			#~ A modal dialog was open, blocking this operation.
+			#~ }
+		#~ }
+
+		#~ UnknownCommand { SELENIUM UnknownCommand {
+			#~ A command could not be executed because the remote end is not aware of it.
+			#~ }
+		#~ }
+
+		#~ UnknownError { SELENIUM UnknownError {
+			#~ An unknown error occurred in the remote end while processing the command.
+			#~ }
+		#~ }
+
+		#~ UnknownMethod { SELENIUM UnknownMethod {
+			#~ The requested command matched a known URL but did not match an method for that URL.
+			#~ }
+		#~ }
+
+		#~ UnsupportedOperation { SELENIUM UnsupportedOperation {
+			#~ Indicates that a command that should have executed properly cannot be supported for some reason.
+			#~ }
+		#~ }
+
