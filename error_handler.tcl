@@ -75,7 +75,7 @@ namespace eval ::selenium {
 			# :Raises: If the response contains an error message.
 
             lassign $response status json_answer
-            
+
 			if {$status == $::selenium::RESPONSE_SUCCESS} {
 				return $json_answer
 			}
@@ -102,7 +102,7 @@ namespace eval ::selenium {
                 if {[info exists Exception($exception_name)]} {
                     set exception_code $Exception($exception_name)
                 } else {
-                    set exception_code $Exception(WebdriverException)
+                    set exception_code $Exception(WebdriverException)   
                 }
 				set exception_info $json_answer
             } else {
@@ -185,3 +185,37 @@ namespace eval ::selenium {
 	}
 
 }
+
+	 # This is the W3C errorcodes (but since they overlap) we would have to change this to a dictionary
+	 # However analyzing the code line 84 and 85 dont seem to be used (except for what I can see is HTML response errors)
+	 # Probably due to lack of "status" in W3C Webdriver json responses.
+	 # Instead the information is found in the key "error" and the "stacktrace", which is accounted for in lines 98,99, and 100.
+	 # Ergo I've udated exceptions.tcl and will commit this then delete. If something changes down the line. We can access this again easy.
+	 #~ set errorcode(400) $ElementClickIntercepted(ElementClickIntercepted)
+	 #~ set errorcode(400) $ElementNotSelectable(ElementNotSelectable)
+	 #~ set errorcode(400) $ElementNotInteractable(ElementNotInteractable)
+	 #~ set errorcode(400) $InsecureCertificate(InsecureCertificate)
+	 #~ set errorcode(400) $InvalidArgument(InvalidArgument)
+	 #~ set errorcode(400) $InvalidCookieDomain(InvalidCookieDomain)
+	 #~ set errorcode(400) $InvalidCoordinates(InvalidCoordinates)
+	 #~ set errorcode(400) $InvalidElementState(InvalidElementState)
+	 #~ set errorcode(400) $InvalidSelector(InvalidSelector)
+	 #~ set errorcode(404) $InvalidSessionId(InvalidSessionId)
+	 #~ set errorcode(500) $JavascriptError(JavascriptError)
+	 #~ set errorcode(500) $MoveTargetOutOfBounds(MoveTargetOutOfBounds)
+	 #~ set errorcode(400) $NoSuchAlert(NoSuchAlert)
+	 #~ set errorcode(404) $NoSuchCookie(NoSuchCookie)
+	 #~ set errorcode(404) $NoSuchElement(NoSuchElement)
+	 #~ set errorcode(400) $NoSuchFrame(NoSuchFrame)
+	 #~ set errorcode(400) $NoSuchWindow(NoSuchWindow)
+	 #~ set errorcode(408) $ScriptTimeout(ScriptTimeout)
+	 #~ set errorcode(500) $SessionNotCreated(SessionNotCreated)
+	 #~ set errorcode(400) $StaleElementReference(StaleElementReference)
+	 #~ set errorcode(408) $Timeout(Timeout)
+	 #~ set errorcode(500) $UnableToSetCookie(UnableToSetCookie)
+	 #~ set errorcode(500) $UnableToCaptureScreen(UnableToCaptureScreen)
+	 #~ set errorcode(500) $UnexpectedAlertOpen(UnexpectedAlertOpen)
+	 #~ set errorcode(404) $UnknownCommand(UnknownCommand)
+	 #~ set errorcode(500) $UnknownError(UnknownError)
+	 #~ set errorcode(405) $UnknownMethod(UnknownMethod)
+	 #~ set errorcode(500) $UnsupportedOperation(UnsupportedOperation)
