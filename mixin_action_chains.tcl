@@ -140,7 +140,8 @@ namespace eval ::selenium {
 			# Moves the mouse to an offset from current mouse position
 			if {![string is integer -strict $xoff] || ![string is integer -strict $yoff]} {
 					throw {Missing Parameters} {Error: an x-offset integer, and a y-offset integer must be supplied}
-					
+				}
+				
 			set action_payload "
 				
 				\[
