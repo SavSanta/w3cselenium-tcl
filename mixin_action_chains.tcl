@@ -13,15 +13,15 @@ namespace eval ::selenium {
 
 		method w3c_click {{element_ID ""}} {
 			if {$element_ID ne ""} {
+				my scroll_into_view $element_ID
 				my w3c_move_to_element $element_ID
 			} 
-
 
 			set action_payload {
 				[
 				 {
 				   "type": "pointer",
-				   "id": "finger1",
+				   "id": "mouse1",
 				   "parameters": {"pointerType": "mouse"},
 				   "actions": [
 					 {"type": "pointerDown", "button": 0},
@@ -36,10 +36,10 @@ namespace eval ::selenium {
             
 		}
 
-
 		method w3c_click_and_hold {{element_ID ""}} {
 
 			if {$element_ID ne ""} {
+				my scroll_into_view $element_ID
 				my w3c_move_to_element $element_ID
 			}
 
@@ -47,7 +47,7 @@ namespace eval ::selenium {
 				[
 				 {
 				   "type": "pointer",
-				   "id": "finger1",
+				   "id": "mouse1",
 				   "parameters": {"pointerType": "mouse"},
 				   "actions": [
 					 {"type": "pointerDown", "button": 0}
@@ -60,10 +60,10 @@ namespace eval ::selenium {
 
 		}
 
-
 		method w3c_context_click {{element_ID ""}} {
 
 			if {$element_ID ne ""} {
+				my scroll_into_view $element_ID
 				my w3c_move_to_element $element_ID
 			}
 
@@ -91,6 +91,7 @@ namespace eval ::selenium {
 		method w3c_double_click {{element_ID ""}} {
 
 			if {$element_ID ne ""} {
+				my scroll_into_view $element_ID
 				my w3c_move_to_element $element_ID
 			}
 
@@ -123,7 +124,6 @@ namespace eval ::selenium {
 			my w3c_release
 			
 			}
-
 
 		method w3c_drag_and_drop_by_offset {element_ID, xoff, yoff} {
 			if {$element_ID eq "" || ![string is integer -strict $xoff] || ![string is integer -strict $yoff]} {
@@ -201,8 +201,6 @@ namespace eval ::selenium {
 			my execute $Command(W3C_PERFORM_ACTIONS) sessionId $session_ID actions $action_payload
 
 		}
-
-
 
 		method w3c_move_to_element_with_offset {element_ID, xoff, yoff } {
 

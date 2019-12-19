@@ -3,8 +3,6 @@ namespace eval ::selenium {
 	oo::class create Mixin_For_Scrolling {
 
         method scroll_into_view {element} {
-            # Scroll element into view
-
             my execute_javascript {arguments[0].scrollIntoView(false);} -arguments [list element $element]
         }
         
