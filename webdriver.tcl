@@ -25,7 +25,7 @@ namespace eval ::selenium {
         
         mixin ::selenium::Mixin_For_Element_Retrieval ::selenium::Mixin_For_Scrolling ::selenium::Mixin_For_Mouse_Interaction ::selenium::Mixin_Action_Chains
         variable driver remote_connection error_handler current_capabilities session_ID Command Mouse_Button Exception StatusCache By w3c_compliant JAVASCRIPT_RETURNS_ELEMENT JAVASCRIPT_RETURNS_ELEMENTS WEB_ELEMENT_ID
-        
+
 
         constructor {service_url desired_capabilities {required_capabilities {}}} {
             # Create a new driver that will issue commands using the wire protocol.
@@ -41,7 +41,7 @@ namespace eval ::selenium {
                                 ::selenium::container_of_webelements::Container_Of_WebElements
 
             namespace eval [self] {
-                namespace upvar ::selenium Command Command Exception Exception Mouse_Button Mouse_Button StatusCache StatusCache By By 
+                namespace upvar ::selenium Command Command Exception Exception Mouse_Button Mouse_Button StatusCache StatusCache By By WEB_ELEMENT_ID WEB_ELEMENT_ID
             }
             set remote_connection [::selenium::Remote_Connection new $service_url]
 
@@ -306,7 +306,7 @@ namespace eval ::selenium {
                     return [compile_to_json $argument_type $argument_value]
                 }
                 element {
-                    return [compile_to_json dict [dict create ELEMENT $argument_value element-6066-11e4-a52e-4f735466cecf $argument_value]]
+                    return [compile_to_json dict [dict create ELEMENT $argument_value $WEB_ELEMENT_ID $argument_value]]
                 }
                 # Originally workaround for Firefox as it doesnt do implicit scroll on out-of-view elements.
                 #webelementid {
